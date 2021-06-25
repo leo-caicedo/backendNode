@@ -1,9 +1,14 @@
 const express = require('express');
+const router = express.Router();
 
 var app = express();
+app.use(router);
 
-app.use('/', function(req, res) {
-    res.send('Hello');
+router.get('/message', (req, res) => {
+    res.send('Hola desde GET');
+});
+router.post('/message', (req, res) => {
+    res.send('Añadiendo mensajes');
 });
 
 app.listen(3000);
