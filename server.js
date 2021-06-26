@@ -1,26 +1,17 @@
+//Server
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = express.Router();
-const response = require('./network/response');
+
+// Router de mensanjes
+const router = require('./network/routes');
 
 var app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(router);
+router(app);
 
-router.get('/message', (req, res) => {
-    console.log(req.headers);
-    //res.send('Hola desde GET');
-    response.success(req, res, 'Vamos con toda!!! Si pude con Django, Nodejs es pan comido :)');
-});
-router.post('/message', (req, res) => {
-    console.log(req.query);
-    if (req.query.error == "ok") {
-        response.error(req, res, 'Error Simulado', 500, 'Es solo una simulación de los errores'); 
-    } else {
-        response.success(req, res, 'Todo va muy bien :)', 201); 
-    }
-});
 
 app.use('/app', express.static('public'));
 
