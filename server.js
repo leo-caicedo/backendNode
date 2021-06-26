@@ -16,7 +16,7 @@ router.get('/message', (req, res) => {
 router.post('/message', (req, res) => {
     console.log(req.query);
     if (req.query.error == "ok") {
-        response.error(req, res, 'Error Simulado', 401); 
+        response.error(req, res, 'Error Simulado', 500, 'Es solo una simulación de los errores'); 
     } else {
         response.success(req, res, 'Todo va muy bien :)', 201); 
     }
