@@ -1,3 +1,5 @@
+const store = require('./store');
+
 const addMessage = (user, messages) => {
     return new Promise((resolve, reject) => {
         if (!user || !messages) {
@@ -10,11 +12,18 @@ const addMessage = (user, messages) => {
             messages: messages,
             date: new Date()
         };
-        console.log(fullName);
+        store.add(fullName);
         resolve(fullName);
+    });
+}
+
+const getMessages = () => {
+    return new Promise((resolve, reject) => {
+        resolve(store.list());
     });
 }
 
 module.exports = {
     addMessage,
+    getMessages, 
 };

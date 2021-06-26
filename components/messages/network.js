@@ -6,9 +6,13 @@ const controller = require('./controller');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    console.log(req.headers);
-    //res.send('Hola desde GET');
-    response.success(req, res, 'Vamos con toda!!! Si pude con Django, Nodejs es pan comido :)');
+    controller.getMessages()
+        .then((messageList) => {
+            response.success(req, res, messageList, 200);
+        })
+        .catch(e => {
+            response.error(req, res, 'Unexpected Error', 500, e);
+        });
 });
 router.post('/', (req, res) => {
     controller.addMessage(req.body.user, req.body.messages)
