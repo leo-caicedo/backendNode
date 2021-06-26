@@ -1,13 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
 
 router.get('/message', (req, res) => {
+    console.log(req.headers);
     res.send('Hola desde GET');
 });
 router.post('/message', (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
     res.send('Añadiendo mensajes');
 });
 
