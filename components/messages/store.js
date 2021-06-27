@@ -1,16 +1,4 @@
-const db = require('mongoose');
 const Model = require('./model');
-const { config } = require('../../config');
-
-
-db.Promise = global.Promise
-db.connect(config.dbHost, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-  .then(() => console.log('[db] Conectada con éxito'))
-  .catch(err => console.error('[db]', err));
-
 
 const addMessage = (messages) => {
     //list.push(messages);
@@ -27,7 +15,7 @@ const getMessages = async (filterUser) => {
     return messages;
 }
 
-const updateText = async (id, messages) {
+const updateText = async (id, messages) => {
     const foundMessages = await Model.findOne({
         _id: id
     });
@@ -40,7 +28,7 @@ const updateText = async (id, messages) {
 
 const removeMessages = (id) => {
     return Model.deleteOne(
-        _id: id,
+        _id = id
     );
 }
 

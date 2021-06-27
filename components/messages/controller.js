@@ -34,13 +34,13 @@ const updateMessages = (id, messages) => {
     });
 }
 
-const deleteMessages(id) {
+const deleteMessages = (id) => {
     return new Promise((resolve, reject) => {
         if (!id) {
             reject('Id invalido');
             return false;
         }
-        store.remove(id);
+        store.remove(id)
             .then(() => {
                 resolve();
             })

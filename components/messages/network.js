@@ -27,10 +27,10 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/:id', (req, res) => {
-    controller.update(req.params.id, req.body.messages);
+    controller.update(req.params.id, req.body.messages)
         .then((data) => {
             response.success(req, res, data, 200);
-        }) catch(err => {
+        }) .catch(err => {
             response.error(req, res, 'Error Interno', 500, err);
         });
 });
