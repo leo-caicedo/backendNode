@@ -38,8 +38,15 @@ const updateText = async (id, messages) {
     return newMessage;
 }
 
+const removeMessages = (id) => {
+    return Model.deleteOne(
+        _id: id,
+    );
+}
+
 module.exports = {
     add: addMessage,
     list: getMessages,
     updateText: updateText,
+    remove: removeMessages,
 }
