@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
         .then((messageList) => {
             response.success(req, res, messageList, 200);
         })
-        .catch(e => {
-            response.error(req, res, 'Unexpected Error', 500, e);
+        .catch(err => {
+            response.error(req, res, 'Unexpected Error', 500, err);
         });
 });
 router.post('/', (req, res) => {
@@ -21,6 +21,14 @@ router.post('/', (req, res) => {
         })
         .catch(err => {
             response.error(req, res, 'Información invalida', 400, 'Error de controlador'); 
+        });
+});
+router.patch('/:id', (req, res) => {
+    controller.update(req.params.id, req.body.messages);
+        .then((data) => {
+            response.success(req, res, data, 200);
+        }) catch(err => {
+            response.error(req, res, 'Error Interno', 500, err);
         });
 });
 
